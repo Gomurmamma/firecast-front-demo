@@ -56,9 +56,11 @@ Mapbox
 
 - Authentication to support app security
 - Whitelisting the client's IP and setting up a firewall on the client app server
+- instructions on signing up for accounts and defining credentials needed to run the app on the server securely
 
 # TODO
 
+- .ENV file for APIs, credentials, etc.
 - Mapbox-gl library and types installation
 - Shadcn & Tailwind installation
 - github actions PR request & review, running jest tests during a PR, all tests must pass
@@ -67,3 +69,4 @@ Mapbox
 - full CSS reset
 - style variables
 - CSS for JS developers research on styling / design system
+- Playwright or other e2e testing
