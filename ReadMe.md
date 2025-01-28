@@ -53,3 +53,17 @@ Mapbox
 # Learning Highlights
 
 # Continued Development & Suggested Features
+
+- Authentication to support app security
+- Whitelisting the client's IP and setting up a firewall on the client app server
+
+# TODO
+
+- Mapbox-gl library and types installation
+- Shadcn & Tailwind installation
+- github actions PR request & review, running jest tests during a PR, all tests must pass
+- libraries for dashboard analytics
+- Setting up SCSS, show Block-Element-Modifier styling syntax
+- full CSS reset
+- style variables
+- CSS for JS developers research on styling / design system
