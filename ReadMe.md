@@ -60,7 +60,6 @@ Mapbox
 
 # TODO
 
-- .ENV file for APIs, credentials, etc.
 - Mapbox-gl library and types installation
 - Shadcn & Tailwind installation
 - github actions PR request & review, running jest tests during a PR, all tests must pass
