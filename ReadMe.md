@@ -7,7 +7,10 @@ After running the 'test' script, the App test should pass, along with any additi
 
 This repository uses a Test Driven Development approach.
 
-3. npm run dev
+3. Add .env file and update the missing credentials.
+   The following will be needed:
+
+4. npm run dev
 
 ---
 
@@ -25,3 +28,28 @@ To add a new feature to the repository:
 ---
 
 Documentation & Demonstration Media...
+
+# The Challenge
+
+Users should be able to..
+
+# Screenshots
+
+## Process
+
+- Mobile first
+
+# Built with
+
+Vite
+React
+Vitest
+Typescript
+prettier
+SWC
+ESLint
+Mapbox
+
+# Learning Highlights
+
+# Continued Development & Suggested Features
