@@ -60,11 +60,24 @@ Mapbox
 
 # TODO
 
+- requesting data from https://earthquake.usgs.gov
+  Need to update the Heatmap to dynamically display the timeseries earthquake data
+
+  > UI controls for changing the time like weather.com
+  > "state" & filtering function
+  > < How to request data on-demand & at a set interval? Or more strictly like weather.com
+
 - full CSS reset
 - style variables
-- CSS for JS developers research on styling / design system
-- Shadcn & Tailwind installation
-- github actions PR request & review, running jest tests during a PR, all tests must pass
-- libraries for dashboard analytics
 - Setting up SCSS, show Block-Element-Modifier styling syntax
+- CSS for JS developers research on styling / design system
+
+- Shadcn & Tailwind installation
+
+- github actions PR request & review
+- running jest tests during a PR
+- all tests must pass
+
+- libraries for dashboard analytics
+
 - Playwright or other e2e testing
