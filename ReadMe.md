@@ -60,12 +60,11 @@ Mapbox
 
 # TODO
 
-- Mapbox-gl library and types installation
+- full CSS reset
+- style variables
+- CSS for JS developers research on styling / design system
 - Shadcn & Tailwind installation
 - github actions PR request & review, running jest tests during a PR, all tests must pass
 - libraries for dashboard analytics
 - Setting up SCSS, show Block-Element-Modifier styling syntax
-- full CSS reset
-- style variables
-- CSS for JS developers research on styling / design system
 - Playwright or other e2e testing

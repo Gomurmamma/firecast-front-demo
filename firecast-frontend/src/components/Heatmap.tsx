@@ -15,7 +15,7 @@ const Heatmap: React.FC = () => {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: [-122.486052, 37.830348],
-      zoom: 9,
+      zoom: 4,
     });
 
     map.on("load", () => {
@@ -76,7 +76,7 @@ const Heatmap: React.FC = () => {
     return () => map.remove();
   }, []);
 
-  return <div ref={mapContainer} className="w-full h-screen" />;
+  return <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />;
 };
 
 export default Heatmap;
