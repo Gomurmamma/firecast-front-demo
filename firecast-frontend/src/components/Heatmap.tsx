@@ -21,7 +21,8 @@ const Heatmap: React.FC = () => {
     map.on("load", () => {
       map.addSource("earthquakes", {
         type: "geojson",
-        data: "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson",
+        data: `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&minmagnitude=1`,
+        generateId: true,
       });
 
       map.addLayer({
