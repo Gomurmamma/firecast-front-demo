@@ -1,5 +1,5 @@
 import React from "react";
-import Heatmap from "../components/Heatmap";
+import Heatmap from "../components/Heatmap.component";
 
 const Home: React.FC = () => {
   return (
