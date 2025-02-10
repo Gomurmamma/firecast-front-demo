@@ -1,0 +1,25 @@
+// ----- COLORS -----
+$levrum-red: #f0381f;
+$gray: #d9d9d9;
+$bg-color: #000000;
+$txt-color: #ffffff;
+
+// ----- BREAKPOINTS -----
+// includes min-width for each screen size
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+// ----- GLOBAL STYLES -----
+body {
+  max-width: 100vw;
+  background-color: $bg-color;
+  color: $txt-color;
+  overflow: hidden;
+  padding: 10vw;
+}
