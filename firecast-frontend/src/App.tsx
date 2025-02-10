@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import "./App.scss";
+import "./styles/App.scss";
 
 function App() {
   const [count, setCount] = useState(0);
