@@ -1,15 +1,16 @@
 import React from "react";
 import Heatmap from "../components/Heatmap.component";
+import NavbarHeader from "@/components/NavbarHeader.component";
+import NavbarLinks from "@/components/NavbarLinks.component";
 
 const Home: React.FC = () => {
   return (
     <section>
       <header>
-        <h1>Call Demand Forecast</h1>
+        <NavbarHeader />
       </header>
-      <main>
-        <Heatmap />
-      </main>
+      <main>{/* <Heatmap /> */}</main>
+      <NavbarLinks />
     </section>
   );
 };
