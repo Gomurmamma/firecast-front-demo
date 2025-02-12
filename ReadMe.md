@@ -10,6 +10,8 @@ This repository uses a Test Driven Development approach.
 3. Add .env file and update the missing credentials.
    The following will be needed:
 
+   - VITE_MAPBOX_TOKEN
+
 4. npm run dev
 
 ---
@@ -67,7 +69,14 @@ Mapbox
   > "state" & filtering function
   > < How to request data on-demand & at a set interval? Or more strictly like weather.com
 
-- full CSS reset
+[x] initialize project with Vite, React, SWC
+[x] prettier
+[x] jest setup
+[x] typescript
+[x] tailwind, shadcn
+[x] initialized heatmap component
+[x] CSS reset
+
 - style variables
 - Setting up SCSS, show Block-Element-Modifier styling syntax
 - CSS for JS developers research on styling / design system
