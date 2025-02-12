@@ -10,6 +10,8 @@ This repository uses a Test Driven Development approach.
 3. Add .env file and update the missing credentials.
    The following will be needed:
 
+   - VITE_MAPBOX_TOKEN
+
 4. npm run dev
 
 ---
