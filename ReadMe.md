@@ -81,3 +81,10 @@ Mapbox
 - libraries for dashboard analytics
 
 - Playwright or other e2e testing
+
+  # Current Progress
+  <img width="774" alt="Screenshot 2025-02-12 at 6 27 04 PM" src="https://github.com/user-attachments/assets/583df011-3c8e-4858-8ae2-597422862172" />
+  <img width="562" alt="Screenshot 2025-02-12 at 6 27 23 PM" src="https://github.com/user-attachments/assets/9be7d079-037e-495c-a0a3-4295501bd665" />
+
+
+  
