@@ -76,12 +76,10 @@ Mapbox
 [x] tailwind, shadcn
 [x] initialized heatmap component
 [x] CSS reset
+[x] SCSS setup & global variables
 
-- style variables
-- Setting up SCSS, show Block-Element-Modifier styling syntax
-- CSS for JS developers research on styling / design system
-
-- Shadcn & Tailwind installation
+- define style variables
+- show Block-Element-Modifier styling syntax
 
 - github actions PR request & review
 - running jest tests during a PR
