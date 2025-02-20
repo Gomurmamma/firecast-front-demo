@@ -11,10 +11,26 @@
   margin: 0;
 }
 
+body,
+body[data-theme="dark"] {
+  --color-text-primary: var(--white);
+  --color-bg-primary: var(--black);
+  --color-element-primary: var(--black);
+}
+
+body[data-theme="light"] {
+  --color-text-primary: var(--black);
+  --color-bg-primary: var(--white);
+  --color-element-primary: var(--white);
+}
+
 body {
+  font-family: var(--font-primary);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background 0.25s ease-in-out;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--black);
 }
 
 img, picture, video, canvas, svg {
