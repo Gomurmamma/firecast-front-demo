@@ -1,12 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { Slider } from "@/components/ui/slider";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const Heatmap: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
+  const [time, setTime] = useState<number>(0); // Current time (e.g., Unix timestamp)
+  const [timeRange, setTimeRange] = useState<[number, number]>([0, 0]); // Min and max time
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -70,6 +73,12 @@ const Heatmap: React.FC = () => {
           "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 7, 1, 9, 0],
         },
       });
+
+      // Set initial time range (min and max time from the data)
+      const features = map.getSource("timeseries")._data.features;
+      const times = features.map((f) => new Date(f.properties.time).getTime());
+      setTimeRange([Math.min(...times), Math.max(...times)]);
+      setTime(Math.min(...times)); // Set initial time to the earliest time
     });
 
     setMap(map);
@@ -77,7 +86,34 @@ const Heatmap: React.FC = () => {
     return () => map.remove();
   }, []);
 
-  return <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />;
+  // useEffect(() => {
+  //   if (!map) return;
+
+  //   // Update the heatmap layer filter based on the selected time
+  //   map.setFilter("timeseries-heat", [
+  //     "<=",
+  //     ["to-number", ["get", "time"]],
+  //     time,
+  //   ]);
+  // }, [time, map]);
+
+  // const handleTimeChange = (value: number[]) => {
+  //   setTime(value[0]); // shadcn Slider returns an array of values
+  // };
+
+  return (
+    <section className="w-full h-screen">
+      <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />
+      <input
+        type="range"
+        min="1"
+        max="100"
+        step="1"
+        defaultValue="50"
+        className="slider"
+      />
+    </section>
+  );
 };
 
 export default Heatmap;
