@@ -3,8 +3,6 @@
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
-@import "variables";
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -16,7 +14,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: $bg-primary;
+  background-color: var(--black);
 }
 
 img, picture, video, canvas, svg {
