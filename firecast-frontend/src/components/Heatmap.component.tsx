@@ -75,16 +75,22 @@ const Heatmap: React.FC = () => {
       });
 
       // Set initial time range (min and max time from the data)
-      const features = map.getSource("timeseries")._data.features;
+      const features = map.getSource("data")._data.features;
+      console.log("features check", features);
+
       const times = features.map((f) => new Date(f.properties.time).getTime());
       setTimeRange([Math.min(...times), Math.max(...times)]);
       setTime(Math.min(...times)); // Set initial time to the earliest time
+
+      console.log("Time check", time);
     });
 
     setMap(map);
 
     return () => map.remove();
   }, []);
+
+  console.log("Time check", time);
 
   // useEffect(() => {
   //   if (!map) return;
