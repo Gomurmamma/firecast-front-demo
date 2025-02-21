@@ -29,7 +29,7 @@ const Heatmap: React.FC = () => {
     }
   );
 
-  // render the Map
+  // Render the Map
   useEffect(() => {
     if (!mapContainer.current) return;
 
@@ -47,6 +47,7 @@ const Heatmap: React.FC = () => {
         generateId: true,
       });
 
+      // Layer styles can change
       map.addLayer({
         id: "earthquakes-heat",
         type: "heatmap",
