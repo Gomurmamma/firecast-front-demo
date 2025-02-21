@@ -29,6 +29,7 @@ const Heatmap: React.FC = () => {
     }
   );
 
+  // render the Map
   useEffect(() => {
     if (!mapContainer.current) return;
 
@@ -42,7 +43,7 @@ const Heatmap: React.FC = () => {
     map.on("load", () => {
       map.addSource("earthquakes", {
         type: "geojson",
-        data: data,
+        data: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&minmagnitude=1",
         generateId: true,
       });
 
@@ -102,8 +103,6 @@ const Heatmap: React.FC = () => {
   useEffect(() => {
     if (!map) return;
 
-    // Filter the heatmap layer to show only earthquakes within the next 24 hours
-    // const now = Date.now();
     // const endTime = now + 24 * 60 * 60 * 1000; // 24 hours from now
     const endTime = time + 3 * 24 * 60 * 60 * 1000; // 3 days later
 
