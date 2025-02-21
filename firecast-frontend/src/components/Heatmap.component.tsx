@@ -98,16 +98,37 @@ const Heatmap: React.FC = () => {
     return () => map.remove();
   }, []);
 
+  // Update the heatmap layer filter when `time` changes
+  useEffect(() => {
+    if (!map) return;
+
+    // Filter the heatmap layer to show only earthquakes within the next 24 hours
+    // const now = Date.now();
+    // const endTime = now + 24 * 60 * 60 * 1000; // 24 hours from now
+    const endTime = time + 3 * 24 * 60 * 60 * 1000; // 3 days later
+
+    map.setFilter("earthquakes-heat", [
+      "all",
+      [">=", ["to-number", ["get", "time"]], time],
+      ["<=", ["to-number", ["get", "time"]], endTime],
+    ]);
+  }, [map, time]);
+
+  const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTime(Number(event.target.value));
+  };
+
   return (
     <section className="w-full h-screen">
       <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />
       <div>{time ? new Date(time).toLocaleString() : "no time data"}</div>
       <input
         type="range"
-        min="1"
-        max="100"
-        step="1"
-        defaultValue="50"
+        min={timeRange[0] || 0}
+        max={timeRange[1] || 0}
+        step={1000 * 60 * 60 * 24} // Step by day
+        value={time}
+        onChange={handleTimeChange}
         className="slider"
       />
     </section>
