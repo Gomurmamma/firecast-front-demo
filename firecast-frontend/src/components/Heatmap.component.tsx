@@ -1,15 +1,33 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Slider } from "@/components/ui/slider";
+import useSWR from "swr";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+// Define a fetcher function
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Heatmap: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [time, setTime] = useState<number>(0); // Current time (e.g., Unix timestamp)
   const [timeRange, setTimeRange] = useState<[number, number]>([0, 0]); // Min and max time
+
+  // Use the useSWR hook to fetch data
+  const { data, error } = useSWR(
+    "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&minmagnitude=1",
+    fetcher,
+    {
+      onSuccess: (data) => {
+        const times = data.features.map((f) =>
+          new Date(f.properties.time).getTime()
+        );
+        setTimeRange([Math.min(...times), Math.max(...times)]);
+        setTime(Math.min(...times));
+      },
+    }
+  );
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -24,7 +42,7 @@ const Heatmap: React.FC = () => {
     map.on("load", () => {
       map.addSource("earthquakes", {
         type: "geojson",
-        data: `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&minmagnitude=1`,
+        data: data,
         generateId: true,
       });
 
@@ -74,42 +92,16 @@ const Heatmap: React.FC = () => {
         },
       });
 
-      // Set initial time range (min and max time from the data)
-      const features = map.getSource("data")._data.features;
-      console.log("features check", features);
-
-      const times = features.map((f) => new Date(f.properties.time).getTime());
-      setTimeRange([Math.min(...times), Math.max(...times)]);
-      setTime(Math.min(...times)); // Set initial time to the earliest time
-
-      console.log("Time check", time);
+      setMap(map);
     });
-
-    setMap(map);
 
     return () => map.remove();
   }, []);
 
-  console.log("Time check", time);
-
-  // useEffect(() => {
-  //   if (!map) return;
-
-  //   // Update the heatmap layer filter based on the selected time
-  //   map.setFilter("timeseries-heat", [
-  //     "<=",
-  //     ["to-number", ["get", "time"]],
-  //     time,
-  //   ]);
-  // }, [time, map]);
-
-  // const handleTimeChange = (value: number[]) => {
-  //   setTime(value[0]); // shadcn Slider returns an array of values
-  // };
-
   return (
     <section className="w-full h-screen">
       <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />
+      <div>{time ? new Date(time).toLocaleString() : "no time data"}</div>
       <input
         type="range"
         min="1"
