@@ -8,11 +8,32 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 // Define a fetcher function
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
+// Custom useInterval hook
+const useInterval = (callback, delay) => {
+  const savedCallback = useRef();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const tick = () => {
+      savedCallback.current();
+    };
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+};
+
 const Heatmap: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [time, setTime] = useState<number>(0); // Current time (e.g., Unix timestamp)
   const [timeRange, setTimeRange] = useState<[number, number]>([0, 0]); // Min and max time
+  const [tempInt, setTempInt] = useState<number>(30); // minutes
+  const [updateInterval, setUpdateInterval] = useState<number>(30); // 30 minutes
 
   // Use the useSWR hook to fetch data
   const { data, error } = useSWR(
@@ -28,6 +49,11 @@ const Heatmap: React.FC = () => {
       },
     }
   );
+
+  // Use the custom useInterval hook to re-fetch data periodically
+  useInterval(() => {
+    mutate();
+  }, updateInterval);
 
   // Render the Map
   useEffect(() => {
@@ -118,10 +144,23 @@ const Heatmap: React.FC = () => {
     setTime(Number(event.target.value));
   };
 
+  const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTempInt(Number(event.target.value));
+  };
+
+  const submitIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("");
+    setTempInt(Number(tempInt));
+    setUpdateInterval(Number(tempInt));
+  };
+
   return (
     <section className="w-full h-screen">
       <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />
-      <div>{time ? new Date(time).toLocaleString() : "no time data"}</div>
+      {/*
+      For debugging only 
+      <div>{time ? new Date(time).toLocaleString() : "no time data"}</div> 
+      */}
       <input
         type="range"
         min={timeRange[0] || 0}
@@ -131,6 +170,20 @@ const Heatmap: React.FC = () => {
         onChange={handleTimeChange}
         className="slider"
       />
+      <article>
+        <label htmlFor="refreshInt">
+          Current Refresh Rate: {updateInterval} min.
+        </label>
+        <p>Minimum time is 1 minute</p>
+        <input
+          type="number"
+          id="refreshInt"
+          value={tempInt}
+          onChange={handleIntervalChange}
+          min="1" // Should probably be the min time it takes to train the model
+        />
+        <button onClick={submitIntervalChange}>Update</button>
+      </article>
     </section>
   );
 };
