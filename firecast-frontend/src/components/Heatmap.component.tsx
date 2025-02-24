@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import useSWR from "swr";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -175,14 +177,14 @@ const Heatmap: React.FC = () => {
           Current Refresh Rate: {updateInterval} min.
         </label>
         <p>Minimum time is 1 minute</p>
-        <input
+        <Input
           type="number"
           id="refreshInt"
           value={tempInt}
           onChange={handleIntervalChange}
           min="1" // Should probably be the min time it takes to train the model
         />
-        <button onClick={submitIntervalChange}>Update</button>
+        <Button onClick={submitIntervalChange}>Update</Button>
       </article>
     </section>
   );
