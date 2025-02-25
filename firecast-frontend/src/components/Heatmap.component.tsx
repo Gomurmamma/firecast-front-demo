@@ -4,6 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import useSWR from "swr";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { MdOutlineEmergency } from "react-icons/md";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -11,6 +12,7 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 // Custom useInterval hook
+// TODO: Need e2e test with backend API
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
 
@@ -158,7 +160,16 @@ const Heatmap: React.FC = () => {
 
   return (
     <section className="w-full h-screen">
-      <div ref={mapContainer} style={{ width: "100%", height: "75vh" }} />
+      <figcaption style={{ display: "flex", flexDirection: "column" }}>
+        Charlotte, NC Demand Map
+        <ul style={{ display: "block" }}>
+          <li style={{ display: "flex", flexDirection: "row" }}>
+            <MdOutlineEmergency title="Expected Call Demand" /> | red | yellow |
+            green |
+          </li>
+        </ul>
+      </figcaption>
+      <figure ref={mapContainer} style={{ width: "100%", height: "50vh" }} />
       {/*
       For debugging only 
       <div>{time ? new Date(time).toLocaleString() : "no time data"}</div> 
@@ -177,6 +188,13 @@ const Heatmap: React.FC = () => {
           Current Refresh Rate: {updateInterval} min.
         </label>
         <p>Minimum time is 1 minute</p>
+        {/*
+        TODO:
+         - Play Button: automatic timeline scroll through & looping
+         - Time increment gradation on or online the input range slider
+         - Place the play button and time into a Drawer component
+         - Legend to indicate heatmap semantics. **Need to finalize heatmap layer display
+        */}
         <Input
           type="number"
           id="refreshInt"
