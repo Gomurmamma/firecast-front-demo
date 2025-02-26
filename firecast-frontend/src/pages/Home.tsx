@@ -6,10 +6,11 @@ import { Slider } from "@/components/ui/slider";
 
 const Home: React.FC = () => {
   return (
-    <section>
-      <header>
-        <h1>Call Demand Forecast</h1>
-      </header>
+    <section
+      style={{
+        width: "100vw",
+      }}
+    >
       <main>
         <Heatmap />
       </main>

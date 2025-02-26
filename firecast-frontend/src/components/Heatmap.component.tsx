@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import useSWR from "swr";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { MdOutlineEmergency } from "react-icons/md";
+import { MdEmergency } from "react-icons/md";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -153,7 +153,7 @@ const Heatmap: React.FC = () => {
   };
 
   const submitIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("");
+    //console.log("click me");
     setTempInt(Number(tempInt));
     setUpdateInterval(Number(tempInt));
   };
@@ -165,11 +165,14 @@ const Heatmap: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginBottom: "5px",
+          backgroundColor: "Gray",
+          textTransform: "uppercase",
+          fontSize: "12px",
+          padding: "5px",
         }}
       >
         Charlotte, NC Map
-        <ul style={{ display: "block" }}>
+        <ul style={{ display: "block", padding: "5px" }}>
           <li
             style={{
               display: "flex",
@@ -177,7 +180,7 @@ const Heatmap: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <MdOutlineEmergency
+            <MdEmergency
               title="Expected Call Demand"
               style={{ marginRight: "5px" }}
             />{" "}
