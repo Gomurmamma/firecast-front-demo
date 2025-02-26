@@ -221,10 +221,10 @@ const Heatmap: React.FC = () => {
         type="range"
         min={timeRange[0] || 0}
         max={timeRange[1] || 0}
-        step={1000 * 60 * 60 * 24} // Step by day
+        step={1000 * 60 * 60} // Step by hour
         value={time}
         onChange={handleTimeChange}
-        className="slider"
+        className="slider" /* Shadcn slider style. Feel free to remove or restyle */
       />
       <article>
         <p>
