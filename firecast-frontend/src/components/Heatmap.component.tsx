@@ -165,6 +165,7 @@ const Heatmap: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          marginBottom: "5px",
         }}
       >
         Charlotte, NC Map
@@ -176,7 +177,10 @@ const Heatmap: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <MdOutlineEmergency title="Expected Call Demand" />{" "}
+            <MdOutlineEmergency
+              title="Expected Call Demand"
+              style={{ marginRight: "5px" }}
+            />{" "}
             <div
               style={{ width: "10px", height: "10px", backgroundColor: "red" }}
             ></div>
