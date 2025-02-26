@@ -55,9 +55,12 @@ const Heatmap: React.FC = () => {
   );
 
   // Use the custom useInterval hook to re-fetch data periodically
-  useInterval(() => {
-    mutate();
-  }, updateInterval);
+  useInterval(
+    () => {
+      mutate();
+    },
+    updateInterval * 60 * 1000 // Time conversion needed for input slider
+  );
 
   // Render the Map
   useEffect(() => {
