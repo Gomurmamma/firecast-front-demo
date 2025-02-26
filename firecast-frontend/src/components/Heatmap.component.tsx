@@ -160,12 +160,47 @@ const Heatmap: React.FC = () => {
 
   return (
     <section className="w-full h-screen">
-      <figcaption style={{ display: "flex", flexDirection: "column" }}>
-        Charlotte, NC Demand Map
+      <figcaption
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        Charlotte, NC Map
         <ul style={{ display: "block" }}>
-          <li style={{ display: "flex", flexDirection: "row" }}>
-            <MdOutlineEmergency title="Expected Call Demand" /> | red | yellow |
-            green |
+          <li
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <MdOutlineEmergency title="Expected Call Demand" />{" "}
+            <div
+              style={{ width: "10px", height: "10px", backgroundColor: "red" }}
+            ></div>
+            <div
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "orange",
+              }}
+            ></div>
+            <div
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "yellow",
+              }}
+            ></div>
+            <div
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "white",
+              }}
+            ></div>
           </li>
         </ul>
       </figcaption>
