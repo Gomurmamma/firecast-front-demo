@@ -40,7 +40,7 @@ const Heatmap: React.FC = () => {
   const [updateInterval, setUpdateInterval] = useState<number>(30); // 30 minutes
 
   // Use the useSWR hook to fetch data
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&minmagnitude=1",
     fetcher,
     {
@@ -166,12 +166,17 @@ const Heatmap: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "Gray",
-          textTransform: "uppercase",
-          fontSize: "12px",
-          padding: "5px",
         }}
       >
-        Charlotte, NC Map
+        <h3>3 Day Forecast</h3>
+        <p
+          style={{
+            textTransform: "uppercase",
+            fontSize: "12px",
+          }}
+        >
+          Charlotte, NC Map
+        </p>
         <ul style={{ display: "block", padding: "5px" }}>
           <li
             style={{
@@ -212,10 +217,6 @@ const Heatmap: React.FC = () => {
         </ul>
       </figcaption>
       <figure ref={mapContainer} style={{ width: "100%", height: "50vh" }} />
-      {/*
-      For debugging only 
-      <div>{time ? new Date(time).toLocaleString() : "no time data"}</div> 
-      */}
       <input
         type="range"
         min={timeRange[0] || 0}
@@ -226,6 +227,11 @@ const Heatmap: React.FC = () => {
         className="slider"
       />
       <article>
+        <p>
+          {" "}
+          Displaying Forecast for:{" "}
+          {time ? new Date(time).toLocaleString() : "no time data"}
+        </p>
         <label htmlFor="refreshInt">
           Current Refresh Rate: {updateInterval} min.
         </label>
